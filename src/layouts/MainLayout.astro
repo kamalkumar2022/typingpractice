@@ -1,0 +1,110 @@
+---
+import "../styles/global.css";
+
+const { title = "Typing Test" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <slot name="head" />
+</head>
+<body class="flex flex-col min-h-screen text-ink antialiased relative selection:bg-primary/20 selection:text-primary">
+    <!-- Minimalist Ambient Technical Background -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+        <!-- Subtle dot grid pattern -->
+        <div class="absolute inset-0 bg-[radial-gradient(#0000000d_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_35%,#000_60%,transparent_100%)]"></div>
+        
+        <!-- Very gentle ambient lighting glow (subtle blue focus) -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-primary/[0.035] blur-[120px] rounded-full"></div>
+        
+        <!-- Faint minimalist keystroke watermark badges in corners (typing thematic touch) -->
+        <div class="hidden lg:flex flex-col gap-6 absolute left-8 top-32 text-ink-muted/15 font-mono text-[11px] select-none">
+            <span class="px-2 py-1 rounded border border-black/[0.06] bg-white/40 shadow-xs backdrop-blur-xs">ESC &bull; Restart</span>
+            <span class="px-2 py-1 rounded border border-black/[0.06] bg-white/40 shadow-xs backdrop-blur-xs">TAB &bull; Focus</span>
+            <span class="px-2 py-1 rounded border border-black/[0.06] bg-white/40 shadow-xs backdrop-blur-xs">WPM &bull; Accuracy</span>
+        </div>
+        <div class="hidden lg:flex flex-col items-end gap-6 absolute right-8 top-32 text-ink-muted/15 font-mono text-[11px] select-none">
+            <span class="px-2 py-1 rounded border border-black/[0.06] bg-white/40 shadow-xs backdrop-blur-xs">&uarr; &darr; &bull; Navigate</span>
+            <span class="px-2 py-1 rounded border border-black/[0.06] bg-white/40 shadow-xs backdrop-blur-xs">MODE &bull; Exam/Blur</span>
+            <span class="px-2 py-1 rounded border border-black/[0.06] bg-white/40 shadow-xs backdrop-blur-xs">SSC &bull; DEST Rules</span>
+        </div>
+    </div>
+
+    <!-- Modern, sleek header -->
+    <header id="header-container" class="fixed inset-x-0 top-0 z-50 flex items-center justify-between bg-white/80 backdrop-blur-md border-b border-black/[0.06] shadow-[0_1px_3px_0_rgba(0,0,0,0.02)] px-4 sm:px-8 py-2.5 transition-all">
+        <!-- Brand / Home button -->
+        <div class="flex items-center gap-3">
+            <button
+                type="button"
+                id="home-button"
+                class="home-button group flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-hairline/90 bg-white hover:bg-canvas-soft hover:border-black/20 shadow-xs transition-all cursor-pointer"
+                onclick="navigateHome()"
+                title="Return to Home"
+            >
+                <div class="w-6 h-6 rounded-md bg-primary/10 text-primary flex items-center justify-center text-xs group-hover:scale-105 transition-transform">
+                    <i class="fas fa-keyboard"></i>
+                </div>
+                <div class="flex items-baseline gap-1.5">
+                    <span class="font-bold text-[15px] tracking-tight text-ink">Typing Exam</span>
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 px-1.5 py-0.5 rounded border border-primary/20">Practice</span>
+                </div>
+            </button>
+        </div>
+
+        <!-- Right actions -->
+        <nav class="flex items-center gap-2 sm:gap-3">
+            <a
+                href="/saved-texts"
+                class="view-saved-link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-ink-secondary hover:text-ink bg-white hover:bg-canvas-soft border border-hairline shadow-xs transition-all"
+                title="View your saved texts"
+            >
+                <i class="fas fa-bookmark text-primary text-[11px]"></i>
+                <span class="hidden sm:inline">Saved Texts</span>
+            </a>
+            <div class="h-4 w-[1px] bg-hairline hidden md:block"></div>
+            <a href="/about-us" class="hidden md:inline-flex text-xs font-medium text-ink-muted hover:text-ink px-2 py-1 rounded hover:bg-canvas-soft transition-colors">About</a>
+            <a href="/contact" class="hidden md:inline-flex text-xs font-medium text-ink-muted hover:text-ink px-2 py-1 rounded hover:bg-canvas-soft transition-colors">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex flex-col items-center w-full pt-[76px] pb-12 px-4 relative z-10">
+        <slot />
+    </main>
+
+    <!-- Refined Minimalist Footer -->
+    <footer class="w-full bg-white/70 backdrop-blur-sm border-t border-black/[0.06] py-6 px-6 mt-auto relative z-10">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-ink-muted">
+            <div class="flex items-center gap-2">
+                <span>&copy; {new Date().getFullYear()} Typing Exam Practice</span>
+                <span>&bull;</span>
+                <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-200/50">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Ready
+                </span>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs font-medium text-ink-secondary">
+                <a href="/about-us" class="hover:text-primary transition-colors">About Us</a>
+                <a href="/privacy-policy" class="hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="/terms" class="hover:text-primary transition-colors">Terms & Conditions</a>
+                <a href="/contact" class="hover:text-primary transition-colors">Contact Us</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Safe navigation fallback -->
+    <script is:inline>
+        if (typeof window.navigateHome === 'undefined') {
+            window.navigateHome = function() {
+                window.location.href = '/';
+            };
+        }
+    </script>
+</body>
+</html>

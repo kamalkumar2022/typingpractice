@@ -1,0 +1,30 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Privacy Policy - Typing Exam Practice">
+    <div class="container" style="max-width: 800px; margin-top: 2rem;">
+        <h2 class="text-2xl font-bold mb-6" style="margin-bottom: 24px; font-size: 24px;">Privacy Policy</h2>
+        
+        <div class="space-y-4 text-ink-secondary" style="display: flex; flex-direction: column; gap: 16px;">
+            <p><strong>Last updated:</strong> {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+            
+            <p>Welcome to Typing Exam Practice. We respect your privacy and are committed to protecting any personal data you may provide to us. This Privacy Policy outlines our practices regarding data collection and usage.</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">1. Information Collection</h3>
+            <p>Our typing test primarily operates locally in your browser. Texts you type, custom texts you paste, and your typing statistics (WPM, accuracy, errors) are processed on your device. If you use our AI text generation features, the prompts may be sent to our backend services securely to generate the content.</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">2. Local Storage</h3>
+            <p>We use your browser's local storage to save your custom texts ("Saved Texts"), settings, and preferences so they are available the next time you visit. This data never leaves your device unless explicitly shared by you.</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">3. Third-Party Services</h3>
+            <p>We may use third-party APIs (like AI providers for text generation). These services only receive the necessary data (like the prompt topic) and are governed by their own respective privacy policies.</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">4. Changes to This Policy</h3>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy, please contact us via our <a href="/contact" style="color: var(--color-primary); text-decoration: underline;">Contact page</a>.</p>
+        </div>
+    </div>
+</MainLayout>

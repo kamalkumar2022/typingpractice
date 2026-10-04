@@ -1,0 +1,30 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Terms & Conditions - Typing Exam Practice">
+    <div class="container" style="max-width: 800px; margin-top: 2rem;">
+        <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 24px;">Terms and Conditions</h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px; color: var(--color-ink-secondary); line-height: 1.6;">
+            <p><strong>Last updated:</strong> {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+            
+            <p>Please read these Terms and Conditions carefully before using the Typing Exam Practice website.</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">1. Acceptance of Terms</h3>
+            <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by these terms, please do not use this service.</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">2. Use of Service</h3>
+            <p>Typing Exam Practice is provided for personal, educational, and professional development purposes. You agree to use the site and its features responsibly. Do not attempt to reverse engineer, disrupt, or attack the underlying infrastructure.</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">3. User Generated Content</h3>
+            <p>Any custom text you paste or generate on our platform remains your responsibility. We do not monitor local usage, but any content generated via our AI tools must comply with standard acceptable use policies (no illegal, harmful, or abusive content).</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">4. "As Is" Service</h3>
+            <p>This service is currently in Beta. It is provided on an "as is" and "as available" basis. We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties or conditions of merchantability.</p>
+            
+            <h3 style="font-size: 20px; font-weight: 600; margin-top: 24px; color: var(--color-ink);">5. Limitations</h3>
+            <p>In no event shall Typing Exam Practice be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on our website.</p>
+        </div>
+    </div>
+</MainLayout>

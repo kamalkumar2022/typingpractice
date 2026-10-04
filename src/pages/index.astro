@@ -1,0 +1,126 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Typing Test">
+    <div class="container">
+        <form id="setup-form">
+            <div id="text-options-container">
+                <label for="text-option">Select Text Type: </label>
+                <div id="radio-group">
+                    <label for="predefined-text-radio" class="radio-option">
+                        <input type="radio" name="text-option" id="predefined-text-radio" value="random" checked>
+                        <strong>Predefined Text</strong>
+                    </label>
+                    <label for="custom-text-radio" class="radio-option">
+                        <input type="radio" name="text-option" id="custom-text-radio" value="custom">
+                        <strong>Custom/AI Text</strong>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Random text group shows only when Random text is selected -->
+            
+            <div id="custom-text-group">
+                <div class="upload-container" id="upload-container">
+                    <div id="text-container">
+                        <div id="custom-text" contenteditable="true" data-placeholder="Paste here, or Upload, or Generate using AI"></div>
+                    </div>
+                    <div id="word-count" class="word-count"></div>
+                    <div class="upload-inline">
+                        <span>or</span>
+                        <button type="button" id="upload-btn">Upload Text File</button>
+                        <!-- NEW: Save Text button -->
+                        <button type="button" id="save-text-btn" style="display:none;">Save Text</button>
+                        <!-- NEW: View Saved Texts button -->
+                        <button type="button" id="view-saved-btn" style="display:none;">View Saved Texts</button>
+                    </div>
+                    <input type="file" id="file-input" accept=".txt" style="display: none;">
+                </div>
+            </div>
+            <div id="ai-container" style="display: none;">
+                <div class="ai-select-container" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                    <label for="generation-options">Generate using AI <img src="images/ai.png" alt="AI Icon" style="width: 20px; height: 20px; vertical-align: middle;"></label>
+                    <select id="generation-options" name="generation-options" required style="width: 50%;">
+                        <option value="no" selected>Not right now</option>
+                        <option value="custom">Custom</option>
+                        <option value="gk">General Knowledge</option>
+                        <option value="vocabulary">Vocabulary</option>
+                        <option value="story">Short Story</option>
+                    </select>
+                </div>
+                <div style="display: flex; justify-content: flex-end;">
+                    <input type="text" id="user-prompt" name="user-prompt" placeholder="Describe required text. Eg. Shaayri, Interview Questions Answers, etc." style="display: none; margin-right: 10px; width: 100%;" />
+                    <button type="button" id="generate-btn">Generate</button>
+                </div>
+            </div>
+            <div id="word-limit-group">
+                <label for="wordLimit">Select Words Limit:</label>
+                <select id="wordLimit" name="wordLimit" required>
+                    <option value="15000" id="no-limit-option" style="display: none;">No limit</option>
+                    <option value="custom">Custom (max 15000 words)</option>
+                    <option value="50">50 words</option>
+                    <option value="100" selected>100 words</option>
+                    <option value="200">200 words</option>
+                    <option value="500">500 words</option>
+                    
+                    
+                </select>
+                <input type="number" id="customWordLimit" name="customWordLimit" placeholder="Enter limit" style="display: none;">
+            </div>
+            <div id="timer-div">
+                <label for="timer">Select Time Limit:</label>
+                <select id="timer" name="timer" required>
+                    <option value="custom">Custom</option>
+                    <option value="1" selected>1 minute</option>
+                    <option value="2">2 minutes</option>
+                    <option value="5">5 minutes</option>
+                    <option value="10">10 minutes</option>
+                    <option value="15">15 minutes</option>
+                    <option value="20">20 minutes</option>
+                </select>
+                <input type="number" id="custom-timer" name="custom-timer" placeholder="Enter time (minutes)" style="display: none;" />
+            </div>
+            
+            <div id="mode-div">
+                <label for="mode-select">Select Mode:</label>
+                <select id="mode-select" name="mode-select" required>
+                    <option value="practice" selected>Practice Mode</option>
+                    <option value="exam">Exam Mode</option>
+                    <option value="blind">Blur Mode</option> <!-- NEW option added -->
+                </select>
+            </div>
+            <br>
+            <button type="submit" id="startbtn">Start Test</button>
+        </form>
+        <div id="typing-test" class="typing-test">
+            <div class="button-container">
+                <div class="button-spacer"></div> <!-- Empty div for spacing -->
+                <button class="reload-button" id="reload-button"><i class="fas fa-redo-alt"></i> Restart Test</button>
+            </div>
+            
+            <div class="top-section">
+                <div class="timer" id="timer-display">Time: 0:00</div>
+            </div>
+
+            <!-- Place test-results here so it's above typing-text -->
+            <div id="test-results" style="display: none;"><!-- Results will appear here --></div>
+
+            <div class="middle-section" id="text-container">
+                <!-- <h3>Real Time Feedback</h3> -->
+                <div class="typing-text-live" id="typing-text-live"></div>
+            </div>
+            <div class="bottom-section" id="text-container">
+                <div id="typing-input" contenteditable="true" data-placeholder="Type here"></div>
+            </div>
+
+            <div id="test-analysis" style="display: none;"><!-- Typing Analysis will appear here --></div>
+
+            <div class="end-test-container">
+                <button type="button" id="end-test">Submit Test</button>
+            </div>
+        </div>
+    </div>
+    <script is:inline src="/mistakes.js"></script>
+    <script is:inline src="/index.js"></script>
+</MainLayout>

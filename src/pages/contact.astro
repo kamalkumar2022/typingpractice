@@ -1,0 +1,44 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Contact Us - Typing Exam Practice">
+    <div class="container" style="max-width: 600px; margin-top: 2rem;">
+        <div style="text-align: center; margin-bottom: 28px;">
+            <div style="width: 56px; height: 56px; border-radius: 16px; background-color: rgba(0, 117, 222, 0.1); color: var(--color-primary); display: inline-flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px;">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Contact Us</h2>
+            <p style="color: var(--color-ink-muted); font-size: 16px; max-width: 440px; margin: 0 auto; line-height: 1.5;">
+                Have questions, feedback, or found a bug? We'd love to hear from you.
+            </p>
+        </div>
+
+        <div style="background-color: var(--color-canvas-soft); border: 1px solid var(--color-hairline); border-radius: 16px; padding: 32px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+            <p style="color: var(--color-ink-secondary); font-size: 15px; margin: 0; line-height: 1.6;">
+                You can reach us directly via email at:
+            </p>
+
+            <a
+                href="mailto:support@typingexampractice.com"
+                style="font-size: 18px; font-weight: 600; color: var(--color-primary); text-decoration: none; word-break: break-all;"
+            >
+                support@typingexampractice.com
+            </a>
+
+            <a
+                href="mailto:support@typingexampractice.com"
+                style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--color-primary); color: white; padding: 10px 24px; border-radius: 9999px; font-weight: 600; text-decoration: none; transition: background-color 0.2s; margin-top: 8px;"
+            >
+                <i class="fas fa-paper-plane" style="font-size: 14px;"></i>
+                <span>Send an Email</span>
+            </a>
+        </div>
+
+        <div style="margin-top: 28px; text-align: center;">
+            <p style="color: var(--color-ink-muted); font-size: 13px; margin: 0;">
+                We typically respond within 24-48 business hours.
+            </p>
+        </div>
+    </div>
+</MainLayout>

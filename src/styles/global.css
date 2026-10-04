@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+/* Design tokens from DESIGN.md (Notion-inspired) */
+@theme {
+  --font-sans: "Inter", -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --color-primary: #0075de;
+  --color-primary-active: #005bab;
+  --color-secondary: #213183;
+  --color-canvas-soft: #f6f5f4;
+  --color-ink: #000000;
+  --color-ink-secondary: #31302e;
+  --color-ink-muted: #615d59;
+  --color-ink-faint: #a39e98;
+  --color-hairline: #e6e6e6;
+  --color-accent-sky: #62aef0;
+  --color-accent-purple: #d6b6f6;
+  --color-accent-purple-deep: #391c57;
+  --color-accent-pink: #ff64c8;
+  --color-accent-orange: #dd5b00;
+  --color-accent-teal: #2a9d99;
+  --color-accent-green: #1aae39;
+
+  --shadow-soft: 0 0.175px 1.041px rgba(0,0,0,.01), 0 0.8px 2.925px rgba(0,0,0,.02),
+    0 2.025px 7.847px rgba(0,0,0,.027), 0 4px 18px rgba(0,0,0,.04);
+  --shadow-elevated: 0 1px 3px rgba(0,0,0,.01), 0 3px 7px rgba(0,0,0,.02),
+    0 7px 15px rgba(0,0,0,.02), 0 14px 28px rgba(0,0,0,.04), 0 23px 52px rgba(0,0,0,.05);
+}
+
+@layer base {
+  html { font-feature-settings: "lnum", "locl"; -webkit-font-smoothing: antialiased; }
+  body {
+    @apply font-sans text-ink/95 m-0 p-0 flex flex-col items-center min-h-screen;
+    background-color: #fafaf9;
+    line-height: 1.5;
+  }
+  h1, h2, h3 { @apply font-bold text-ink; letter-spacing: -0.625px; }
+  select, input[type="text"], input[type="number"] {
+    @apply bg-white text-ink border border-hairline rounded-sm text-[15px] outline-none transition;
+    padding: 6px 10px;
+  }
+  select:focus, input[type="text"]:focus, input[type="number"]:focus {
+    @apply border-primary;
+    box-shadow: 0 0 0 3px rgba(0, 117, 222, .18);
+  }
+  label { @apply text-[15px] font-medium text-ink-secondary; }
+  button { font-family: inherit; }
+}
+
+/* ---------- Navigation ---------- */
+#header-container {
+  @apply fixed inset-x-0 top-0 z-100 flex items-center justify-between bg-white/85 backdrop-blur-md border-b border-black/[0.06];
+  padding: 10px 24px;
+}
+#website-heading {
+  @apply m-0 p-0 text-center text-ink-secondary whitespace-nowrap font-medium;
+  font-size: 14px; line-height: 1.4; letter-spacing: -0.01em;
+}
+.header-spacer { @apply invisible; width: 90px; }
+.button-spacer { width: 90px; }
+
+/* ---------- Layout / card ---------- */
+.container {
+  @apply flex flex-col bg-white/95 backdrop-blur-xs border border-black/[0.08] rounded-2xl shadow-elevated w-full max-w-[760px] mx-auto transition-all;
+  padding: 32px;
+  box-sizing: border-box;
+}
+form { @apply flex flex-col gap-1; }
+
+/* ---------- Form rows ---------- */
+#ai-container, #timer-div, #mode-div, #word-limit-group, #radio-group {
+  @apply w-full flex items-center justify-between gap-3;
+  margin-top: 12px;
+}
+#timer, #custom-timer { margin: 0; }
+#generation-options, #timer, #mode-select, #wordLimit { width: 50% !important; }
+#word-limit-group, #timer-div { flex-wrap: wrap; }
+#customWordLimit, #custom-timer { margin-left: auto; width: 50%; box-sizing: border-box; }
+
+#text-options-container {
+  @apply flex items-center justify-between gap-3 flex-wrap;
+  margin-bottom: 8px;
+}
+#radio-group {
+  @apply bg-canvas-soft rounded-full p-1 gap-1;
+  width: auto; margin: 0;
+}
+.radio-option {
+  @apply relative flex items-center rounded-full cursor-pointer transition text-ink-muted;
+  margin: 0; padding: 6px 16px; font-size: 14px;
+}
+.radio-option input[type="radio"] { @apply absolute opacity-0 pointer-events-none; }
+.radio-option:has(input:checked) { @apply bg-white text-ink shadow-soft; }
+.radio-option:has(input:focus-visible) { box-shadow: 0 0 0 3px rgba(0,117,222,.3); }
+.radio-option strong { @apply font-semibold; }
+
+.ai-select-container { gap: 12px; }
+.ai-select-container label { @apply inline-flex items-center gap-2; }
+#ai-container {
+  @apply bg-canvas-soft rounded-lg border border-hairline;
+  padding: 16px; box-sizing: border-box; margin-top: 16px;
+}
+#user-prompt { width: 100% !important; box-sizing: border-box; margin-top: 12px; padding: 8px 12px; }
+#generate-btn { margin-top: 12px; }
+
+/* ---------- Buttons ---------- */
+#startbtn, #end-test, #generate-btn, #upload-btn, #save-text-btn, #view-saved-btn,
+.reload-button, .home-button, .options button {
+  @apply cursor-pointer inline-flex items-center justify-center gap-2 font-medium transition text-[15px];
+  border: 1px solid transparent;
+}
+/* primary pill */
+#startbtn, #end-test {
+  @apply bg-primary text-white rounded-full w-full max-w-60;
+  padding: 10px 24px; margin: 24px auto 0; font-size: 16px;
+}
+#end-test { display: block; margin: 24px auto 0; }
+#startbtn:hover, #end-test:hover { @apply bg-primary-active; }
+#startbtn:active, #end-test:active { @apply bg-primary-active scale-[.98]; }
+/* secondary pill */
+#generate-btn, #upload-btn, #save-text-btn, #view-saved-btn {
+  @apply bg-white text-ink border-hairline rounded-full;
+  padding: 6px 16px;
+}
+#generate-btn:hover, #upload-btn:hover, #save-text-btn:hover, #view-saved-btn:hover {
+  @apply bg-canvas-soft;
+}
+#generate-btn:disabled { @apply opacity-50 cursor-not-allowed; }
+/* utility */
+.reload-button, .home-button {
+  @apply bg-white text-ink border-hairline rounded-md;
+  padding: 4px 14px; margin: 0; min-height: 34px;
+}
+.reload-button:hover, .home-button:hover { @apply bg-canvas-soft; }
+.upload-inline { @apply flex flex-wrap items-center justify-center gap-2 text-ink-muted text-sm; margin-top: 10px; }
+
+/* ---------- Text areas ---------- */
+#text-container {
+  @apply w-full bg-white border border-hairline rounded-lg box-border transition;
+  margin: 12px 0 8px;
+}
+#text-container:focus-within { @apply border-primary; box-shadow: 0 0 0 3px rgba(0,117,222,.15); }
+#custom-text, #typing-input, #typed-text, #typed-text-analysis, #typing-text-live {
+  @apply font-sans box-border;
+  width: 100%; padding: 14px 16px; height: 170px; overflow-y: auto;
+  font-size: 1.1rem; line-height: 1.6; resize: none;
+  white-space: pre-wrap; word-wrap: break-word; tab-size: 4;
+}
+#typing-input { font-family: arial, verdana, helvetica, sans-serif; }
+.typed-text, #typed-text-analysis, #typing-text-live {
+  @apply bg-canvas-soft rounded-lg;
+  margin: 0;
+}
+#custom-text[contenteditable="true"]:empty:before,
+#typing-input[contenteditable="true"]:empty:before {
+  content: attr(data-placeholder);
+  @apply text-ink-faint pointer-events-none;
+}
+#custom-text:focus, #typing-input:focus { outline: none; box-shadow: none; }
+.input-error, #custom-text.input-error { box-shadow: inset 0 0 0 2px #e5484d; border-radius: 8px; }
+
+.word-count { @apply text-ink-muted text-sm text-center; margin: 8px 0 0; }
+#word-count span { @apply font-semibold text-ink; }
+
+/* ---------- Typing test ---------- */
+.typing-test { @apply hidden flex-col gap-3; }
+.typing-test.active { @apply flex; }
+.button-container { @apply flex justify-between items-center w-full; margin: 0; }
+.top-section, .middle-section, .bottom-section {
+  @apply flex flex-col justify-center items-stretch flex-1;
+}
+.timer {
+  @apply font-bold text-center tabular-nums rounded-full bg-white border border-hairline text-accent-orange;
+  font-size: 18px; padding: 4px 18px; margin: 0 auto;
+}
+.end-test-container { @apply w-full; }
+
+/* ---------- Results ---------- */
+#test-results, #test-analysis {
+  @apply w-full bg-white box-border overflow-x-auto;
+  max-width: 1000px; color: var(--color-ink-secondary);
+}
+#test-results table, #test-analysis table {
+  @apply w-full text-[15px];
+  border-collapse: separate; border-spacing: 0; margin-bottom: 20px;
+  border: 1px solid var(--color-hairline); border-radius: 12px; overflow: hidden;
+}
+#test-results th, #test-results td, #test-analysis th, #test-analysis td {
+  border-bottom: 1px solid var(--color-hairline);
+  padding: 10px 12px; text-align: center;
+}
+#test-results tr:last-child td, #test-analysis tr:last-child td { border-bottom: 0; }
+#test-results th, #test-analysis th {
+  @apply bg-canvas-soft text-ink-muted text-xs font-semibold uppercase;
+  letter-spacing: .125px;
+}
+#test-analysis ul { padding-left: 20px; }
+#test-analysis li { margin: 4px 0; }
+
+/* ---------- Footer ---------- */
+footer {
+  /* Removed to allow Tailwind styling in Layout */
+}
+
+/* ---------- Saved texts page ---------- */
+#saved-texts-container { @apply flex flex-col gap-3; }
+#saved-texts-container h3 {
+  @apply text-ink-muted font-semibold uppercase;
+  font-size: 12px !important; letter-spacing: .125px; margin: 20px 0 0 !important;
+}
+#saved-texts-container h3:first-child { margin-top: 0 !important; }
+.saved-item {
+  @apply bg-white border border-hairline rounded-lg transition hover:shadow-soft;
+  margin: 0 !important; padding: 18px !important;
+}
+.saved-heading { @apply font-bold text-ink text-lg; letter-spacing: -.25px; }
+.saved-preview { @apply text-ink-muted text-[15px] whitespace-pre-wrap; margin-top: 6px; }
+.options { @apply flex flex-wrap gap-2; margin-top: 14px; }
+.options button {
+  @apply bg-white text-ink border-hairline rounded-md;
+  padding: 4px 14px; margin: 0 !important;
+}
+.options button:hover { @apply bg-canvas-soft; }
+.options button:last-child { @apply text-accent-orange; }
+
+/* ---------- JS-generated modals (inline-styled in scripts) ---------- */
+body > div[style*="z-index: 1000"] {
+  background-color: rgba(0, 0, 0, .45) !important;
+  backdrop-filter: blur(3px);
+}
+body > div[style*="z-index: 1000"] > div {
+  background-color: #fff !important;
+  border: 1px solid var(--color-hairline);
+  border-radius: 16px !important;
+  padding: 28px !important;
+  box-shadow: var(--shadow-elevated);
+  font-family: var(--font-sans);
+}
+body > div[style*="z-index: 1000"] button {
+  border-radius: 9999px !important;
+  padding: 8px 20px !important;
+  font-weight: 500; cursor: pointer; transition: background-color .15s;
+}
+body > div[style*="z-index: 1000"] button[style*="background-color: rgb(51, 51, 51)"] {
+  background-color: var(--color-primary) !important;
+}
+body > div[style*="z-index: 1000"] button[style*="background-color: rgb(51, 51, 51)"]:hover {
+  background-color: var(--color-primary-active) !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .container { padding: 20px; }
+  #header-container { padding: 10px 14px; }
+  #website-heading { font-size: 16px; }
+  .header-spacer, .button-spacer { width: 0; }
+  #generation-options, #timer, #mode-select, #wordLimit { width: 55% !important; }
+  .ai-select-container { flex-wrap: wrap; }
+}

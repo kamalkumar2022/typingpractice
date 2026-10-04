@@ -1,0 +1,35 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="About Us - Typing Exam Practice">
+    <div class="container" style="max-width: 800px; margin-top: 2rem;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <i class="fas fa-keyboard" style="font-size: 48px; color: var(--color-primary); margin-bottom: 16px;"></i>
+            <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">About Typing Exam Practice</h2>
+            <p style="color: var(--color-ink-muted); font-size: 16px;">Master your keyboard skills with focused, distraction-free practice.</p>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 24px; color: var(--color-ink-secondary);">
+            <section>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: var(--color-ink);">Our Mission</h3>
+                <p style="line-height: 1.6;">We built Typing Exam Practice to provide a clean, fast, and customizable environment for anyone looking to improve their typing speed and accuracy. Whether you're preparing for a professional typing exam, learning to code, or simply looking to type faster, our tools are designed to help you succeed.</p>
+            </section>
+            
+            <section>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: var(--color-ink);">Features</h3>
+                <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.6;">
+                    <li><strong>Exam & Practice Modes:</strong> Simulate real test environments or practice casually.</li>
+                    <li><strong>AI Generation:</strong> Instantly generate texts based on specific topics like Vocabulary, General Knowledge, or Stories.</li>
+                    <li><strong>Blind/Blur Mode:</strong> Challenge yourself by typing without looking at the screen output.</li>
+                    <li><strong>Detailed Analytics:</strong> Get immediate feedback on your WPM, accuracy, and specific key mistakes.</li>
+                </ul>
+            </section>
+            
+            <section style="background-color: var(--color-canvas-soft); padding: 24px; border-radius: 12px; margin-top: 16px;">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Open Beta</h3>
+                <p style="line-height: 1.6; font-size: 15px;">This platform is currently in active development (Beta). We are continually adding new features and refining the experience. Your feedback is crucial to making this the best typing tool on the web.</p>
+            </section>
+        </div>
+    </div>
+</MainLayout>

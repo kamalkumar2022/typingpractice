@@ -1,0 +1,19 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Saved Texts">
+  <style is:inline slot="head">
+    /* Minimal styling for saved items */
+    .saved-item { border: 1px solid #ccc; margin: 10px; padding: 10px; }
+    .saved-heading { font-weight: bold; }
+    .saved-preview { margin-top: 5px; white-space: pre-wrap; }
+    .options button { margin-right: 5px; }
+  </style>
+  
+  <div class="container">
+    <!-- <h2 style="text-align: center;">Saved Texts</h2> -->
+    <div id="saved-texts-container"><!-- Items will be injected here --></div>
+  </div>
+  <script is:inline src="/saved-texts.js"></script>
+</MainLayout>

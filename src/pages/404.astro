@@ -1,0 +1,16 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="404: Page Not Found - Typing Exam Practice">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh; text-align: center; padding: 2rem;">
+        <h1 style="font-size: 120px; font-weight: 800; color: var(--color-primary); line-height: 1; margin: 0;">404</h1>
+        <h2 style="font-size: 32px; font-weight: 700; margin: 16px 0; color: var(--color-ink);">Oops! Page not found</h2>
+        <p style="color: var(--color-ink-secondary); font-size: 18px; max-width: 500px; margin-bottom: 32px; line-height: 1.6;">
+            Looks like your fingers slipped! The page you are looking for doesn't exist or has been moved.
+        </p>
+        <a href="/" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--color-primary); color: white; padding: 12px 28px; border-radius: 9999px; font-weight: 600; text-decoration: none; transition: background-color 0.2s;">
+            <i class="fas fa-home"></i> Back to Home
+        </a>
+    </div>
+</MainLayout>
