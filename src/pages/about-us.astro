@@ -3,22 +3,22 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="About Us - Typing Exam Practice">
-    <div class="container" style="max-width: 800px; margin-top: 2rem;">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <i class="fas fa-keyboard" style="font-size: 48px; color: var(--color-primary); margin-bottom: 16px;"></i>
-            <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">About Typing Exam Practice</h2>
-            <p style="color: var(--color-ink-muted); font-size: 16px;">Master your keyboard skills with focused, distraction-free practice.</p>
+    <div class="container max-w-3xl mt-2 sm:mt-6 w-full">
+        <div class="text-center mb-6 sm:mb-10">
+            <i class="fas fa-keyboard text-4xl sm:text-5xl text-primary mb-3 sm:mb-4 inline-block"></i>
+            <h1 class="text-2xl sm:text-3xl font-bold mb-2">About Typing Exam Practice</h1>
+            <p class="text-ink-muted text-sm sm:text-base max-w-md mx-auto leading-relaxed">Master your keyboard skills with focused, distraction-free practice.</p>
         </div>
         
-        <div style="display: flex; flex-direction: column; gap: 24px; color: var(--color-ink-secondary);">
+        <div class="flex flex-col gap-5 sm:gap-6 text-ink-secondary text-sm sm:text-base">
             <section>
-                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: var(--color-ink);">Our Mission</h3>
-                <p style="line-height: 1.6;">We built Typing Exam Practice to provide a clean, fast, and customizable environment for anyone looking to improve their typing speed and accuracy. Whether you're preparing for a professional typing exam, learning to code, or simply looking to type faster, our tools are designed to help you succeed.</p>
+                <h2 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-ink">Our Mission</h2>
+                <p class="leading-relaxed">We built Typing Exam Practice to provide a clean, fast, and customizable environment for anyone looking to improve their typing speed and accuracy. Whether you're preparing for a professional typing exam, learning to code, or simply looking to type faster, our tools are designed to help you succeed.</p>
             </section>
             
             <section>
-                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: var(--color-ink);">Features</h3>
-                <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.6;">
+                <h2 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-ink">Features</h2>
+                <ul class="list-disc pl-5 space-y-1.5 leading-relaxed">
                     <li><strong>Exam & Practice Modes:</strong> Simulate real test environments or practice casually.</li>
                     <li><strong>AI Generation:</strong> Instantly generate texts based on specific topics like Vocabulary, General Knowledge, or Stories.</li>
                     <li><strong>Blind/Blur Mode:</strong> Challenge yourself by typing without looking at the screen output.</li>
@@ -26,9 +26,9 @@ import MainLayout from "../layouts/MainLayout.astro";
                 </ul>
             </section>
             
-            <section style="background-color: var(--color-canvas-soft); padding: 24px; border-radius: 12px; margin-top: 16px;">
-                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Open Beta</h3>
-                <p style="line-height: 1.6; font-size: 15px;">This platform is currently in active development (Beta). We are continually adding new features and refining the experience. Your feedback is crucial to making this the best typing tool on the web.</p>
+            <section class="bg-canvas-soft border border-hairline p-4 sm:p-6 rounded-xl sm:rounded-2xl mt-2">
+                <h2 class="text-base sm:text-lg font-semibold mb-2 text-ink">Open Beta</h2>
+                <p class="leading-relaxed text-sm">This platform is currently in active development (Beta). We are continually adding new features and refining the experience. Your feedback is crucial to making this the best typing tool on the web.</p>
             </section>
         </div>
     </div>

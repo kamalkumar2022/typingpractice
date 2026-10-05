@@ -485,7 +485,7 @@ saveTextBtn.addEventListener('click', function() {
 
 // NEW: When View Saved Texts button is clicked, navigate to the saved texts page
 viewSavedBtn.addEventListener('click', () => {
-    window.location.href = 'saved-texts.html';
+    window.location.href = '/saved-texts';
 });
 
 // PRESERVE LEADING SPACES: Use TextNode approach for exact character preservation
@@ -554,7 +554,6 @@ function resolveSelectedTime() {
 }
 
 function startTypingTest(text, time) {
-    document.querySelector('.container').style.width = '60%';
     window.typedText = '';
     
     // Reset UI from any previous test
@@ -610,6 +609,12 @@ function startTypingTest(text, time) {
                 newTypingInput.id = 'typing-input';
                 newTypingInput.className = typingInput.className; 
                 newTypingInput.setAttribute('contenteditable', 'true');
+                newTypingInput.setAttribute('autocapitalize', 'off');
+                newTypingInput.setAttribute('autocorrect', 'off');
+                newTypingInput.setAttribute('autocomplete', 'off');
+                newTypingInput.setAttribute('spellcheck', 'false');
+                newTypingInput.setAttribute('inputmode', 'text');
+                newTypingInput.setAttribute('data-placeholder', 'Type here');
                 newTypingInput.style.cssText = typingInput.style.cssText;
                 typingInput.parentNode.replaceChild(newTypingInput, typingInput);
 
@@ -777,9 +782,28 @@ function startTypingTest(text, time) {
         if (!typingInput.textContent) {
             typingInput.innerHTML = '';
         }
+
+        // Start timer on first character if not started by keydown (crucial for mobile virtual keyboards)
+        if (!timerStarted && typedText.length > 0) {
+            timerStarted = true;
+            if (interval) {
+                clearInterval(interval);
+                interval = null;
+            }
+            interval = setInterval(() => {
+                elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+                remainingTime = time - elapsedTime;
+                if (remainingTime <= 0) {
+                    updateTimerDisplay(0);
+                    clearInterval(interval);
+                    calculateSpeed(typingInput.innerText.length, elapsedTime);
+                } else {
+                    updateTimerDisplay(remainingTime);
+                }
+            }, 1000);
+        }
         
         const charSpans = typingTextLive.querySelectorAll('span');
-
         
         // Reset all spans for re-evaluation
         for (let i = 0; i < charSpans.length; i++) {
@@ -787,7 +811,6 @@ function startTypingTest(text, time) {
             charSpans[i].style.color = '';
         }
         
-        // excessCharacters = '';
         for (let i = 0; i < typedText.length; i++) {
             if (i < text.length) {
                 const isCorrect = typedText[i] === text[i];
@@ -795,7 +818,7 @@ function startTypingTest(text, time) {
                 if (text.charCodeAt(i) == 32 || text.charCodeAt(i) == 10 || text.charCodeAt(i) == 13 || text.charCodeAt(i) == 9) {
                     if (!isCorrect) {
                         charSpans[i].style.backgroundColor = 'red';
-                    }else {
+                    } else {
                         charSpans[i].style.backgroundColor = '';
                     }
                 } else {
@@ -803,27 +826,22 @@ function startTypingTest(text, time) {
                     charSpans[i].style.color = isCorrect ? 'green' : 'red';
                 }
             }
-            // else {
-            //     // Handle excess characters
-            //     if (typedText[i] === ' ') {
-            //         // Space with red background
-            //         excessCharacters += '<span style="background-color: red;">&nbsp;</span>';
-            //     } else if (typedText[i] === '\n') {
-            //         // Newline with red background
-            //         excessCharacters += '<span style="background-color: red;"><br></span>';
-            //     } else if (typedText[i] === '\t') {
-            //         // Tab with red background
-            //         excessCharacters += '<span style="background-color: red;">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-            //     } else {
-            //         // Regular character with red text
-            //         excessCharacters += '<span style="color: red;">' + typedText[i] + '</span>';
-            //     }
-            // }
         }
         
-        // Highlight current position if within text bounds
+        // Highlight current position if within text bounds and auto-scroll within container
         if (typedText.length < text.length) {
-            charSpans[typedText.length].style.backgroundColor = 'yellow';
+            const activeSpan = charSpans[typedText.length];
+            if (activeSpan) {
+                activeSpan.style.backgroundColor = 'yellow';
+                // Auto-scroll typingTextLive to keep active span in view
+                const containerTop = typingTextLive.scrollTop;
+                const containerHeight = typingTextLive.clientHeight;
+                const spanTop = activeSpan.offsetTop;
+                const spanHeight = activeSpan.offsetHeight;
+                if (spanTop < containerTop + 5 || spanTop + spanHeight > containerTop + containerHeight - 15) {
+                    typingTextLive.scrollTop = Math.max(0, spanTop - containerHeight / 3);
+                }
+            }
         }
     });
 
@@ -1123,10 +1141,10 @@ function navigateHome() {
             if (websiteHeading) {
                 websiteHeading.textContent = 'Typing Exam Practice';
             }
-            window.location.href = 'index.html';
+            window.location.href = '/';
         }
     } else {
-        window.location.href = 'index.html';
+        window.location.href = '/';
     }
 }
 
@@ -1274,8 +1292,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Create a container for both buttons to place them side by side
     const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'result-action-buttons';
     buttonContainer.style.display = 'flex';
     buttonContainer.style.justifyContent = 'center';
+    buttonContainer.style.flexWrap = 'wrap';
     buttonContainer.style.gap = '10px';
     buttonContainer.appendChild(saveResultTextBtn);
     buttonContainer.appendChild(viewSavedTextsBtn);
@@ -1300,7 +1320,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add event listener to the view button
     viewSavedTextsBtn.addEventListener('click', function() {
-        window.location.href = 'saved-texts.html';
+        window.location.href = '/saved-texts';
     });
 
     // Show both buttons when the test results are displayed

@@ -91,8 +91,8 @@ if (saved[index]) {
     }
     // Save the text temporarily in localStorage
     localStorage.setItem("useSavedText", saved[index].text);
-    // Navigate to the home page (index.html)
-    window.location.href = 'index.html';
+    // Navigate to the home page
+    window.location.href = '/';
 }
 }
 
@@ -436,9 +436,9 @@ function openEditModal(currentHeading, currentText, callback) {
     modalContent.innerHTML = `
         <h2>Edit Saved Text</h2>
         <label>Heading:</label><br>
-        <input type="text" id="edit-heading" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 14px;" value="${currentHeading}"><br><br>
+        <input type="text" id="edit-heading" style="width: 100%; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 14px;" value="${currentHeading}"><br><br>
         <label>Text:</label><br>
-        <textarea id="edit-text" style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 14px; max-width:600px; min-width:600px; height: 200px; max-height: 400px; min-height:100px;"></textarea><br><br>
+        <textarea id="edit-text" style="width: 100%; max-width: 100%; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; font-size: 14px; height: 200px; max-height: 400px; min-height: 100px;"></textarea><br><br>
         <button id="edit-save">Save</button>
         <button id="edit-cancel">Cancel</button>
     `;
@@ -512,7 +512,7 @@ function deleteText(index) {
 }
 
 function navigateHome() {
-    window.location.href = 'index.html';
+    window.location.href = '/';
 }
 
 // Add restrictToEnglishOnly function from index.js

@@ -3,13 +3,13 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="404: Page Not Found - Typing Exam Practice">
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh; text-align: center; padding: 2rem;">
-        <h1 style="font-size: 120px; font-weight: 800; color: var(--color-primary); line-height: 1; margin: 0;">404</h1>
-        <h2 style="font-size: 32px; font-weight: 700; margin: 16px 0; color: var(--color-ink);">Oops! Page not found</h2>
-        <p style="color: var(--color-ink-secondary); font-size: 18px; max-width: 500px; margin-bottom: 32px; line-height: 1.6;">
+    <div class="flex flex-col items-center justify-center min-h-[50vh] text-center px-4 py-8 sm:py-12 max-w-lg mx-auto w-full">
+        <h1 class="text-7xl sm:text-8xl md:text-9xl font-extrabold text-primary leading-none m-0">404</h1>
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold my-3 sm:my-4 text-ink">Oops! Page not found</h2>
+        <p class="text-ink-secondary text-sm sm:text-base max-w-md mb-6 sm:mb-8 leading-relaxed">
             Looks like your fingers slipped! The page you are looking for doesn't exist or has been moved.
         </p>
-        <a href="/" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--color-primary); color: white; padding: 12px 28px; border-radius: 9999px; font-weight: 600; text-decoration: none; transition: background-color 0.2s;">
+        <a href="/" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-active text-white px-6 sm:px-7 py-3 rounded-full font-semibold text-sm sm:text-base transition-colors shadow-xs">
             <i class="fas fa-home"></i> Back to Home
         </a>
     </div>

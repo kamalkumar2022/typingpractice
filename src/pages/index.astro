@@ -23,8 +23,8 @@ import MainLayout from "../layouts/MainLayout.astro";
             
             <div id="custom-text-group">
                 <div class="upload-container" id="upload-container">
-                    <div id="text-container">
-                        <div id="custom-text" contenteditable="true" data-placeholder="Paste here, or Upload, or Generate using AI"></div>
+                    <div id="text-container" class="text-box-container">
+                        <div id="custom-text" contenteditable="true" data-placeholder="Paste here, or Upload, or Generate using AI" spellcheck="false"></div>
                     </div>
                     <div id="word-count" class="word-count"></div>
                     <div class="upload-inline">
@@ -40,7 +40,7 @@ import MainLayout from "../layouts/MainLayout.astro";
             </div>
             <div id="ai-container" style="display: none;">
                 <div class="ai-select-container" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
-                    <label for="generation-options">Generate using AI <img src="images/ai.png" alt="AI Icon" style="width: 20px; height: 20px; vertical-align: middle;"></label>
+                    <label for="generation-options">Generate using AI <img src="/images/ai.png" alt="AI Icon" style="width: 20px; height: 20px; vertical-align: middle;"></label>
                     <select id="generation-options" name="generation-options" required style="width: 50%;">
                         <option value="no" selected>Not right now</option>
                         <option value="custom">Custom</option>
@@ -49,7 +49,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                         <option value="story">Short Story</option>
                     </select>
                 </div>
-                <div style="display: flex; justify-content: flex-end;">
+                <div id="ai-prompt-container" style="display: flex; justify-content: flex-end;">
                     <input type="text" id="user-prompt" name="user-prompt" placeholder="Describe required text. Eg. Shaayri, Interview Questions Answers, etc." style="display: none; margin-right: 10px; width: 100%;" />
                     <button type="button" id="generate-btn">Generate</button>
                 </div>
@@ -63,8 +63,6 @@ import MainLayout from "../layouts/MainLayout.astro";
                     <option value="100" selected>100 words</option>
                     <option value="200">200 words</option>
                     <option value="500">500 words</option>
-                    
-                    
                 </select>
                 <input type="number" id="customWordLimit" name="customWordLimit" placeholder="Enter limit" style="display: none;">
             </div>
@@ -95,23 +93,21 @@ import MainLayout from "../layouts/MainLayout.astro";
         </form>
         <div id="typing-test" class="typing-test">
             <div class="button-container">
-                <div class="button-spacer"></div> <!-- Empty div for spacing -->
+                <div class="timer" id="timer-display">Time: 0:00</div>
                 <button class="reload-button" id="reload-button"><i class="fas fa-redo-alt"></i> Restart Test</button>
             </div>
             
-            <div class="top-section">
-                <div class="timer" id="timer-display">Time: 0:00</div>
-            </div>
+            <div class="top-section" style="display: none;"></div>
 
             <!-- Place test-results here so it's above typing-text -->
             <div id="test-results" style="display: none;"><!-- Results will appear here --></div>
 
-            <div class="middle-section" id="text-container">
+            <div class="middle-section text-box-container">
                 <!-- <h3>Real Time Feedback</h3> -->
                 <div class="typing-text-live" id="typing-text-live"></div>
             </div>
-            <div class="bottom-section" id="text-container">
-                <div id="typing-input" contenteditable="true" data-placeholder="Type here"></div>
+            <div class="bottom-section text-box-container">
+                <div id="typing-input" contenteditable="true" data-placeholder="Type here" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" inputmode="text"></div>
             </div>
 
             <div id="test-analysis" style="display: none;"><!-- Typing Analysis will appear here --></div>
